@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GIT - Tips and Tricks</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+.grobou { cursor: pointer; color: #d44; font-weight: bold; font-size: 24px; float: right; margin: 11px 5px 5px 5px; }
+
+.collapsor { background-color: #dbf; color: black; cursor: pointer;
+  padding: 10px 10px 8px 20px; width: 100%;
+  text-align: left; font-size: 15px;
+  outline: none; border: none; }
+
+.active { background-color: #fbd; }
+
+.collapsor:after { content: '\002B'; color: #4d4; font-weight: bold; font-size: 20px;
+  float: right; margin-left: 5px; }
+
+.active:after { content: "\2212"; }
+
+.collapsed { padding: 0; margin-left: 10px; overflow: hidden;
+  max-height: 10px; transition: max-height 0.2s ease-out;
+  background-color: #efc; }
+
+.collapsed p { margin: 10px 10px 18px 20px; }
+
+h2 { margin-top: 35px; margin-bottom: 22px; color: blue; font-family:"Open Sans","DejaVu Sans",sans-serif;
+     font-weight: 300; font-style: normal; font-size: 200%; }
+h3 { margin-top: 25px; margin-bottom: 20px; color: blue; font-family:"Open Sans","DejaVu Sans",sans-serif;
+     font-weight: 300; font-style: normal; font-size: 150%; }
+
+.concept { font-weight: bold; font-size: 120%; }
+.comm { font-weight: bold; font-family: monospace; color: #b33; font-size: 108%; }
+.ccomm { font-weight: bold; font-size: 140%; font-family: monospace; color: #b33; }
+
+.large { margin: 0 auto; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px;
+width: 880px; padding-left: 10px; padding-right: 8px; background-color:white; }
+
+@media print
+ { .collapsed { max-height: 10000px; } }
+
+</style>
+</head>
+<body text="#000000" bgcolor="#DDDDDD" link="#000099" vlink="#990099" alink="#000099">
+
+<!--
+<button class="collapsor"><span class="concept"></span></button>
+<div class="collapsed"><p>
+</p></div>
+-->
+<div class="large">
+<button class="grobou" id="grobou">&#x00B1;</button> 
+<h2 style="margin-top: 15px">GIT Trucs Pratiques</h2>
+
+<button class="collapsor">Fichier <span class="concept">.gitignore </span> pour exclure des éléments de la gestion</button>
+<div class="collapsed"><p>
+Exemple sur un projet du style de ProjVideSTM32F103.zip</p>
+<ul>
+<pre>	DebugConfig
+	Listings
+	Objects
+	*.uvguix.*
+</pre>
+</div>
+
+<button class="collapsor"><span class="concept">Reconstituer le Working-Tree entier </span> est-ce possible ?</button>
+<div class="collapsed"><p>
+Si on efface <b>TOUS</b> les fichiers et répertoires du working-tree, est-ce que GIT peut tout reconstituer à partir de l'historique
+(répertoire <b>.git</b>)&nbsp;?<br>
+Oui bien sûr à l'aide de la commande <span class="comm">checkout</span>&nbsp;!<br><br>
+Cependant il y a un petit détour, en effet si le working-tree comporte des changements par rapport au dernier commit,
+<span class="comm">checkout</span> évitera de reconstituer ce qui serait en conflit avec ces changements.<br>
+Pour obtenir le résultat souhaité, il faut forcer la reconstitution avec la commande <span class="comm">checkout</span> au niveau fichier.<br><br>
+Syntaxe générale : <span class="comm">checkout &lt;nom_de_branche_ou_commit_ou_tag> &lt;nom_de_fichier></span><br>
+exemple : <span class="comm">checkout master '*'</span> ou généralement <span class="comm">checkout -- '*'</span><br><br>
+N.B. L'argument <span class="comm">'*'</span> désigne tous les fichier er dossiers archivés, les simple quotes sont
+requises pour que ce soit GIT et non le shell qui interprête le symbole <span class="comm">*</span>. 
+</p></div>
+
+<button class="collapsor"><span class="concept">Création de tags automatisée </span> en phase avec le code source</button>
+<div class="collapsed"><p>
+Pour être sûr que les tags soient cohérents avec les numéros de version inclus dans le code source, on peut utiliser un script
+pour le shell bash. Beaucoup de solutions sont possibles, voici un exemple qui effectue le <span class="comm">commit</span> après
+avoir lu  le numéro de version dans le code source&nbsp:</p>
+<pre><span class="comm">	#! /bin/bash
+	v=V$(grep -P -o '#define\s+VERSION\s+[0-9.]*' src/version.h | grep -o '[0-9.]*')
+	git commit -a -m "Version "$v 
+	echo creation tag $v
+	git tag $v
+</span></pre>
+<p>Cet exemple utilise des <b>expressions régulières</b> pour extraire le numéro de version au moyen de l'utilitaire Unix
+ <span class="comm">grep</span>.
+</p></div>
+
+<button class="collapsor"><span class="concept">Stockage des credentials sous Windows</span></button>
+<div class="collapsed"><p>
+Le stockage des <b>credentials</b> permet d'éviter d'avoir à saisir nom d'utilisateur et mot de passe à chaque accés au serveur
+(<span class="comm">push</span>, et <span class="comm">pull</span> si le repo n'est pas public.<br>
+La distribution de GIT pour Windows (en 2018) offre une seule possibilité, peu documentée, de stockage de credentials,
+dite <b>manager</b>.</p>
+<pre>	git config -l
+	credential.helper=manager</pre>
+<p>Ce "manager" délègue le stockage des credentials au système d'exploitation.<br>
+On peut accéder à ce stockage via le "Gestionnaire d'identification" :<br>
+Panneau de Configuration --> Utilisateurs --> Gestionnaire d'Identification --> Identif. Windows<br>
+La saisie des credentials se fait automatiquement lors de la première connexion.<br><br>
+
+ 
+
+</p></div>
+
+
+<p>&nbsp;</p>
+</div>
+
+<script>
+var coll = document.getElementsByClassName("collapsor");
+var i;
+
+for	( i = 0; i < coll.length; i++ ) {
+	coll[i].addEventListener("click", function() {
+	var content = this.nextElementSibling;
+	if	( this.classList.contains("active") ) {
+		content.style.maxHeight = '10px'; this.classList.remove("active");
+		} else {
+		content.style.maxHeight = content.scrollHeight + "px"; this.classList.add("active");
+		}
+	});
+}
+
+function allplus() {
+for	( i = 0; i < coll.length; i++ ) {
+	var content = coll[i].nextElementSibling;
+	content.style.maxHeight = content.scrollHeight + "px";
+	coll[i].classList.add("active");
+	} 
+}
+
+function allminus() {
+for	( i = 0; i < coll.length; i++ ) {
+	var content = coll[i].nextElementSibling;
+	content.style.maxHeight = '10px';
+	coll[i].classList.remove("active");
+	} 
+}
+
+document.getElementById("grobou").addEventListener("click", function() {
+	if	( coll[0].classList.contains("active") )
+		allminus();
+	else	allplus();
+	});
+
+</script>
+
+</body>
+</html>
