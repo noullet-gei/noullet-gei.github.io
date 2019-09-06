@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GIT - Tips and Tricks</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -54,7 +54,7 @@ width: 880px; padding-left: 10px; padding-right: 8px; background-color:white; }
 <button class="grobou" id="grobou">&#x00B1;</button> 
 <h2 style="margin-top: 15px">GIT Trucs Pratiques</h2>
 
-<button class="collapsor">Fichier <span class="concept">.gitignore </span> pour exclure des éléments de la gestion</button>
+<button class="collapsor">Fichier <span class="concept">.gitignore </span> pour exclure des Ã©lÃ©ments de la gestion</button>
 <div class="collapsed"><p>
 Exemple sur un projet du style de ProjVideSTM32F103.zip</p>
 <ul>
@@ -67,45 +67,45 @@ Exemple sur un projet du style de ProjVideSTM32F103.zip</p>
 
 <button class="collapsor"><span class="concept">Reconstituer le Working-Tree entier </span> est-ce possible ?</button>
 <div class="collapsed"><p>
-Si on efface <b>TOUS</b> les fichiers et répertoires du working-tree, est-ce que GIT peut tout reconstituer à partir de l'historique
-(répertoire <b>.git</b>)&nbsp;?<br>
-Oui bien sûr à l'aide de la commande <span class="comm">checkout</span>&nbsp;!<br><br>
-Cependant il y a un petit détour, en effet si le working-tree comporte des changements par rapport au dernier commit,
-<span class="comm">checkout</span> évitera de reconstituer ce qui serait en conflit avec ces changements.<br>
-Pour obtenir le résultat souhaité, il faut forcer la reconstitution avec la commande <span class="comm">checkout</span> au niveau fichier.<br><br>
-Syntaxe générale : <span class="comm">checkout &lt;nom_de_branche_ou_commit_ou_tag> &lt;nom_de_fichier></span><br>
-exemple : <span class="comm">checkout master '*'</span> ou généralement <span class="comm">checkout -- '*'</span><br><br>
-N.B. L'argument <span class="comm">'*'</span> désigne tous les fichier er dossiers archivés, les simple quotes sont
-requises pour que ce soit GIT et non le shell qui interprête le symbole <span class="comm">*</span>. 
+Si on efface <b>TOUS</b> les fichiers et rÃ©pertoires du working-tree, est-ce que GIT peut tout reconstituer Ã  partir de l'historique
+(rÃ©pertoire <b>.git</b>)&nbsp;?<br>
+Oui bien sÃ»r Ã  l'aide de la commande <span class="comm">checkout</span>&nbsp;!<br><br>
+Cependant il y a un petit dÃ©tour, en effet si le working-tree comporte des changements par rapport au dernier commit,
+<span class="comm">checkout</span> Ã©vitera de reconstituer ce qui serait en conflit avec ces changements.<br>
+Pour obtenir le rÃ©sultat souhaitÃ©, il faut forcer la reconstitution avec la commande <span class="comm">checkout</span> au niveau fichier.<br><br>
+Syntaxe gÃ©nÃ©rale : <span class="comm">checkout &lt;nom_de_branche_ou_commit_ou_tag> &lt;nom_de_fichier></span><br>
+exemple : <span class="comm">checkout master '*'</span> ou gÃ©nÃ©ralement <span class="comm">checkout -- '*'</span><br><br>
+N.B. L'argument <span class="comm">'*'</span> dÃ©signe tous les fichier er dossiers archivÃ©s, les simple quotes sont
+requises pour que ce soit GIT et non le shell qui interprÃªte le symbole <span class="comm">*</span>. 
 </p></div>
 
-<button class="collapsor"><span class="concept">Création de tags automatisée </span> en phase avec le code source</button>
+<button class="collapsor"><span class="concept">CrÃ©ation de tags automatisÃ©e </span> en phase avec le code source</button>
 <div class="collapsed"><p>
-Pour être sûr que les tags soient cohérents avec les numéros de version inclus dans le code source, on peut utiliser un script
-pour le shell bash. Beaucoup de solutions sont possibles, voici un exemple qui effectue le <span class="comm">commit</span> après
-avoir lu  le numéro de version dans le code source&nbsp:</p>
+Pour Ãªtre sÃ»r que les tags soient cohÃ©rents avec les numÃ©ros de version inclus dans le code source, on peut utiliser un script
+pour le shell bash. Beaucoup de solutions sont possibles, voici un exemple qui effectue le <span class="comm">commit</span> aprÃ¨s
+avoir lu  le numÃ©ro de version dans le code source&nbsp:</p>
 <pre><span class="comm">	#! /bin/bash
 	v=V$(grep -P -o '#define\s+VERSION\s+[0-9.]*' src/version.h | grep -o '[0-9.]*')
 	git commit -a -m "Version "$v 
 	echo creation tag $v
 	git tag $v
 </span></pre>
-<p>Cet exemple utilise des <b>expressions régulières</b> pour extraire le numéro de version au moyen de l'utilitaire Unix
+<p>Cet exemple utilise des <b>expressions rÃ©guliÃ¨res</b> pour extraire le numÃ©ro de version au moyen de l'utilitaire Unix
  <span class="comm">grep</span>.
 </p></div>
 
 <button class="collapsor"><span class="concept">Stockage des credentials sous Windows</span></button>
 <div class="collapsed"><p>
-Le stockage des <b>credentials</b> permet d'éviter d'avoir à saisir nom d'utilisateur et mot de passe à chaque accés au serveur
+Le stockage des <b>credentials</b> permet d'Ã©viter d'avoir Ã  saisir nom d'utilisateur et mot de passe Ã  chaque accÃ©s au serveur
 (<span class="comm">push</span>, et <span class="comm">pull</span> si le repo n'est pas public.<br>
-La distribution de GIT pour Windows (en 2018) offre une seule possibilité, peu documentée, de stockage de credentials,
+La distribution de GIT pour Windows (en 2018) offre une seule possibilitÃ©, peu documentÃ©e, de stockage de credentials,
 dite <b>manager</b>.</p>
 <pre>	git config -l
 	credential.helper=manager</pre>
-<p>Ce "manager" délègue le stockage des credentials au système d'exploitation.<br>
-On peut accéder à ce stockage via le "Gestionnaire d'identification" :<br>
+<p>Ce "manager" dÃ©lÃ¨gue le stockage des credentials au systÃ¨me d'exploitation.<br>
+On peut accÃ©der Ã  ce stockage via le "Gestionnaire d'identification" :<br>
 Panneau de Configuration --> Utilisateurs --> Gestionnaire d'Identification --> Identif. Windows<br>
-La saisie des credentials se fait automatiquement lors de la première connexion.<br><br>
+La saisie des credentials se fait automatiquement lors de la premiÃ¨re connexion.<br><br>
 
  
 

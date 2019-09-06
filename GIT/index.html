@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GIT - Guide de Survie</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -53,36 +53,36 @@ width: 880px; padding-left: 10px; padding-right: 8px; background-color:white; }
 <div style="margin: 0 auto; width: 880px; overflow: auto; ">
 <img src="gitflow.png" style="float: right; margin-left: 20px; margin-right: 0px">
 <img src="logo2x.png"><br>
-<h2>Résumé de survie</h2>
+<h2>RÃ©sumÃ© de survie</h2>
 <i>Jean-Louis Noullet 2018</i>
 </div>
 <div class="large">
 <button class="grobou" id="grobou">&#x00B1;</button> 
 <h2 style="margin-top: 15px">Besoins couverts</h2>
-<p>GIT vise à satisfaire 3 besoins distincts, et son utilisation peut être rentable même si on n'est pas concerné par les 3:<br></p>
+<p>GIT vise Ã  satisfaire 3 besoins distincts, et son utilisation peut Ãªtre rentable mÃªme si on n'est pas concernÃ© par les 3:<br></p>
 
 <button class="collapsor"><span class="concept">Gestion de Version</span> : historique de toutes les modifications</button>
 <div class="collapsed"><p>
 Les modifications sont non-destructives<br>
-L'historique permet de revenir en arrière si nécessaire<br>
-L'historique peut comporter des bifurcations, des lignes temporelles parallèles<br>
-Cette fonctionnalité fonctionne en mode <b>local</b>
+L'historique permet de revenir en arriÃ¨re si nÃ©cessaire<br>
+L'historique peut comporter des bifurcations, des lignes temporelles parallÃ¨les<br>
+Cette fonctionnalitÃ© fonctionne en mode <b>local</b>
 </p></div>
 
-<button class="collapsor"><span class="concept">Sauvegarde en Réseau</span> : serveur GIT public ou privé</button>
+<button class="collapsor"><span class="concept">Sauvegarde en RÃ©seau</span> : serveur GIT public ou privÃ©</button>
 <div class="collapsed"><p>
-La gestion de version protège contre les erreurs de codage, mais pas contre les incidents matériels (crash, vol, catastrophe)<br>
-La sauvegarde sur un serveur distant (ou plusieurs) vient en complément<br>
-La redondance est <b>gérée</b><br>
+La gestion de version protÃ¨ge contre les erreurs de codage, mais pas contre les incidents matÃ©riels (crash, vol, catastrophe)<br>
+La sauvegarde sur un serveur distant (ou plusieurs) vient en complÃ©ment<br>
+La redondance est <b>gÃ©rÃ©e</b><br>
 En plus les serveurs GIT offrent une visualisation de l'historique sur une interface web
 </p></div>
 
 <button class="collapsor"><span class="concept">Gestion Collaborative</span> : le serveur GIT supporte de multiples collaborateurs</button>
 <div class="collapsed"><p>
-le travail de chaque collaborateur est protégé, les contribution sont non-destructives<br>
-chaque collaborateur possède une copie locale du projet 
+le travail de chaque collaborateur est protÃ©gÃ©, les contribution sont non-destructives<br>
+chaque collaborateur possÃ¨de une copie locale du projet 
 </p></div>
-<p>Certains fournisseurs mettent à disposition un service gratuit de serveur GIT, par exemple :</p>
+<p>Certains fournisseurs mettent Ã  disposition un service gratuit de serveur GIT, par exemple :</p>
 <ul>
 <li><a href="http://github.com">github.com</a>, gratuit pour open-source</li>
 <li><a href="https://aws.amazon.com/fr/codecommit/">aws.amazon.com</a> (CodeCommit), gratuit pour 5 collaborateurs max.</li>
@@ -90,72 +90,72 @@ chaque collaborateur possède une copie locale du projet
 
 <h2>Concepts</h2>
 
-<button class="collapsor"><span class="concept">repository</span> ou <span class="concept">repo</span> : un répertoire contenant un projet (working tree), plus un répertoire <b>.git</b></button>
+<button class="collapsor"><span class="concept">repository</span> ou <span class="concept">repo</span> : un rÃ©pertoire contenant un projet (working tree), plus un rÃ©pertoire <b>.git</b></button>
 <div class="collapsed"><p>
-l'ensemble peut être copié, deplacé, synchronisé (dropbox, drive), archivé de maniere classique (tar,zip)<br>
-le répertoire <b>.git</b> contient l'historique du projet sous forme codée et comprimée
+l'ensemble peut Ãªtre copiÃ©, deplacÃ©, synchronisÃ© (dropbox, drive), archivÃ© de maniere classique (tar,zip)<br>
+le rÃ©pertoire <b>.git</b> contient l'historique du projet sous forme codÃ©e et comprimÃ©e
 </p></div>
 
-<button class="collapsor"><span class="concept">working tree</span> : l'ensemble des fichiers et répertoires du projet</button>
+<button class="collapsor"><span class="concept">working tree</span> : l'ensemble des fichiers et rÃ©pertoires du projet</button>
 <div class="collapsed"><p>
-le répertoire <b>.git</b> exclu bien sûr<br>
-on peut exclure de la gestion les répertoire et fichiers temporaires (listés dans le fichier <b>.gitignore</b>)
+le rÃ©pertoire <b>.git</b> exclu bien sÃ»r<br>
+on peut exclure de la gestion les rÃ©pertoire et fichiers temporaires (listÃ©s dans le fichier <b>.gitignore</b>)
 </p></div>
 
 <button class="collapsor"><span class="concept">remote</span> : un serveur associe a un repo. Chaque remote a un identifiant et une URL</button>
 <div class="collapsed"><p>
-un repo peut être associé à plusieurs remotes<br>
-l'URL du remote indique le protocole utilisé (https ou ssh ou autre)<br>
-<b>origin</b> est l'identifiant donné au serveur par la commande <span class="comm">git clone</span>
+un repo peut Ãªtre associÃ© Ã  plusieurs remotes<br>
+l'URL du remote indique le protocole utilisÃ© (https ou ssh ou autre)<br>
+<b>origin</b> est l'identifiant donnÃ© au serveur par la commande <span class="comm">git clone</span>
 </p></div>
 
-<button class="collapsor"><span class="concept">commit</span> : un snapshot (instantané), identifié par un hash (sha1)</button>
+<button class="collapsor"><span class="concept">commit</span> : un snapshot (instantanÃ©), identifiÃ© par un hash (sha1)</button>
 <div class="collapsed"><p>
-un commit pointe sur au moins un commit précédent, son <b>ancetre</b><br>
-on peut désigner un commit par un hash abrégé (min 5 premiers digits), un tag ou une branche<br>
+un commit pointe sur au moins un commit prÃ©cÃ©dent, son <b>ancetre</b><br>
+on peut dÃ©signer un commit par un hash abrÃ©gÃ© (min 5 premiers digits), un tag ou une branche<br>
 (Note : to commit signifie "confier, remettre")
 </p></div>
 
-<button class="collapsor"><span class="concept">stage</span> : espace virtuel où se trouvent les éléments qui seront photographiés par le prochain commit</button>
+<button class="collapsor"><span class="concept">stage</span> : espace virtuel oÃ¹ se trouvent les Ã©lÃ©ments qui seront photographiÃ©s par le prochain commit</button>
 <div class="collapsed"><p>
 les commandes <span class="comm">git add</span> et <span class="comm">git commit -a</span> garnissent le stage<br>
 la commande <span class="comm">git status</span> permet de voir ce qui est ou pas dans le stage<br>
 </p></div>
 
-<button class="collapsor"><span class="concept">tag</span> : un label statique unique, attaché a un commit</button>
+<button class="collapsor"><span class="concept">tag</span> : un label statique unique, attachÃ© a un commit</button>
 <div class="collapsed"><p>
-les tags servent à repérer les releases sous github<br>
+les tags servent Ã  repÃ©rer les releases sous github<br>
 </p></div>
 
-<button class="collapsor"><span class="concept">branch</span> : un label glissant unique, attaché temporairement à un commit</button>
+<button class="collapsor"><span class="concept">branch</span> : un label glissant unique, attachÃ© temporairement Ã  un commit</button>
 <div class="collapsed"><p>
-la branche <b>active</b> au moment de commettre un commit va accompagner ce commit, les autres branches restent à leur place<br>
-la commande <span class="comm">git init</span> crée une branche de départ nommée <b>master</b><br>
+la branche <b>active</b> au moment de commettre un commit va accompagner ce commit, les autres branches restent Ã  leur place<br>
+la commande <span class="comm">git init</span> crÃ©e une branche de dÃ©part nommÃ©e <b>master</b><br>
 </p></div>
 
 <button class="collapsor"><span class="concept">HEAD</span> : une sorte de "pointeur" sur le dernier commit et la branche active</button>
 <div class="collapsed"><p>
-les commandes suivantes déplacent HEAD : <span class="comm">git commit</span>, <span class="comm">git checkout</span>,
+les commandes suivantes dÃ©placent HEAD : <span class="comm">git commit</span>, <span class="comm">git checkout</span>,
 <span class="comm">git merge</span>, <span class="comm">git pull</span><br>
 on est en mode <b>detached HEAD</b> si HEAD pointe seulement sur un commit (pas de branch active)<br>
-alors si on fait un nouveau commit on crée une bifurcation anonyme<br>
+alors si on fait un nouveau commit on crÃ©e une bifurcation anonyme<br>
 </p></div>
 
-<h2>Résumé de Commandes (shell)</h2>
-<p>Les commandes suivantes servent à créer un repository local</p>
+<h2>RÃ©sumÃ© de Commandes (shell)</h2>
+<p>Les commandes suivantes servent Ã  crÃ©er un repository local</p>
 <button class="collapsor"><span class="ccomm">git init</span></button>
 <div class="collapsed"><p>
-Cette commande va configurer le <b>répertoire courant</b> comme repository<br>
-cela va se concrétiser par la création d'un répertoire <b>.git</b>
+Cette commande va configurer le <b>rÃ©pertoire courant</b> comme repository<br>
+cela va se concrÃ©tiser par la crÃ©ation d'un rÃ©pertoire <b>.git</b>
 </p></div>
 
-<button class="collapsor"><span class="ccomm">git clone </span> copie locale d'un repository à partir d'un serveur</button>
+<button class="collapsor"><span class="ccomm">git clone </span> copie locale d'un repository Ã  partir d'un serveur</button>
 <div class="collapsed"><p>
 Exemple : <span class="comm">git clone http://github.com/user_name/repo</span><br>
-Le repository va être créé sous forme d'un sous-répertoire du répertoire courant<br>
+Le repository va Ãªtre crÃ©Ã© sous forme d'un sous-rÃ©pertoire du rÃ©pertoire courant<br>
 </p></div>
 
-<p>Toutes les autres commandes fonctionnent à condition que le <b>répertoire courant</b> soit un repository GIT</p>
+<p>Toutes les autres commandes fonctionnent Ã  condition que le <b>rÃ©pertoire courant</b> soit un repository GIT</p>
 <h3>Visualisation</h3>
 
 <button class="collapsor"><span class="ccomm">git help </span> doc en ligne</button>
@@ -163,14 +163,14 @@ Le repository va être créé sous forme d'un sous-répertoire du répertoire courant
 Exemple : <span class="comm">git help branch</span> donne le manuel de la commande git branch
 </p></div>
 
-<button class="collapsor"><span class="ccomm">git status </span> l'état du working-tree</button>
+<button class="collapsor"><span class="ccomm">git status </span> l'Ã©tat du working-tree</button>
 <div class="collapsed"><p>
-Cette commande permet de savoir quels éléments ont changé depuis le dernier commit, et s'ils sont sur le stage ou non.
+Cette commande permet de savoir quels Ã©lÃ©ments ont changÃ© depuis le dernier commit, et s'ils sont sur le stage ou non.
 </p></div>
 
 <button class="collapsor"><span class="ccomm">git log </span> la liste des commits</button>
 <div class="collapsed"><p>
-Liste chronologique, le commit le plus récent en premier<br>
+Liste chronologique, le commit le plus rÃ©cent en premier<br>
 <span class="comm">git log --oneline --all --graph </span> donne une ligne par commit
 </p></div>
 
@@ -190,18 +190,18 @@ Ajouter un nouveau fichier sur le stage, en vue du prochain commit
 <button class="collapsor"><span class="ccomm">git commit </span> enregistrer les modifications</button>
 <div class="collapsed"><p>
 Exemple : <span class="comm">git commit -a -m "je decris la modif"</span><br>
-l'option <span class="comm">-a</span> remet automatiquement sur le stage les éléments qui y étaient au commit précedent<br>
+l'option <span class="comm">-a</span> remet automatiquement sur le stage les Ã©lÃ©ments qui y Ã©taient au commit prÃ©cedent<br>
 l'option <span class="comm">-m</span> permet de mettre un commentaire dans la ligne de commande
-(sans cette option, GIT ouvre automatiquement l'éditeur de texte local)
+(sans cette option, GIT ouvre automatiquement l'Ã©diteur de texte local)
 </p></div>
 
 <button class="collapsor"><span class="ccomm">git checkout </span> remonter le temps</button>
 <div class="collapsed"><p>
 Cette commande prend un commit comme argument. Elle fait 2 choses :</p>
 <ul><li>placer le pointeur HEAD sur ce commit</li>
-<li>reconstituer le working-tree tel qu'il était au moment de ce commit<br>
-N.B. pour que cette reconstitution fonctionne correctement il faut que la base de donnée soit à jour
-(qu'il n'existe aucun changement non commité)</li>
+<li>reconstituer le working-tree tel qu'il Ã©tait au moment de ce commit<br>
+N.B. pour que cette reconstitution fonctionne correctement il faut que la base de donnÃ©e soit Ã  jour
+(qu'il n'existe aucun changement non commitÃ©)</li>
 </ul>
 <p>Comme toutes les commandes qui prennent un commit comme argument, cette commande accepte aussi un <b>tag</b> ou une <b>branch</b>
 </p></div>
@@ -209,15 +209,15 @@ N.B. pour que cette reconstitution fonctionne correctement il faut que la base d
 <button class="collapsor"><span class="ccomm">git checkout --</span> remonter le temps</button>
 <div class="collapsed"><p>
 Cette commande prend un nom de fichier comme argument. Elle fait 1 chose :</p>
-<ul><li>reconstituer le fichier tel qu'il était au moment du dernier commit<br>
-N.B. pour que cette reconstitution fonctionne correctement il faut que la base de donnée soit à jour
-(qu'il n'existe aucun changement non commité)</li>
+<ul><li>reconstituer le fichier tel qu'il Ã©tait au moment du dernier commit<br>
+N.B. pour que cette reconstitution fonctionne correctement il faut que la base de donnÃ©e soit Ã  jour
+(qu'il n'existe aucun changement non commitÃ©)</li>
 </ul>
 </div>
 
-<button class="collapsor"><span class="ccomm">git tag </span> donner un numéro de version (release)</button>
+<button class="collapsor"><span class="ccomm">git tag </span> donner un numÃ©ro de version (release)</button>
 <div class="collapsed"><p>
-Le tag est une étiquette qui est appliquée au dernier commit<br>
+Le tag est une Ã©tiquette qui est appliquÃ©e au dernier commit<br>
 Exemple : <span class="comm">git tag 'V 2.011a'</span> 
 </p></div>
 
@@ -226,23 +226,23 @@ Exemple : <span class="comm">git tag 'V 2.011a'</span>
 Exemple :<br>
 <span class="comm">git branch alpha</span><br>
 <span class="comm">git checkout alpha</span><br>
-La première commande a mis une étiquette 'alpha' sur le dernier commit, la seconde a fait pointer HEAD sur
+La premiÃ¨re commande a mis une Ã©tiquette 'alpha' sur le dernier commit, la seconde a fait pointer HEAD sur
 la branche alpha (sans changer de commit). Les prochains commits constitueront la branche 'alpha'.<br>
-(l'ancienne branche reste sur place, jusqu'à ce qu'on lui fasse un checkout)  
+(l'ancienne branche reste sur place, jusqu'Ã  ce qu'on lui fasse un checkout)  
 </p></div>
 
 <button class="collapsor"><span class="ccomm">git merge </span> fusionner deux branches</button>
 <div class="collapsed"><p>
 Exemple : <span class="comm">git merge alpha</span> va incorporer le contenu de la branche alpha dans
 la branche courante<br>
-Si tout va bien cela crée un nouveau commit qui a 2 ancêtres.<br>
-Sinon, en cas de conflit, l'opération est suspendue et l'utilisateur est alors invité a éditer
-manuellement chaque fichier en situation conflictuelle, puis à faire un commit qui va conclure le merge
+Si tout va bien cela crÃ©e un nouveau commit qui a 2 ancÃªtres.<br>
+Sinon, en cas de conflit, l'opÃ©ration est suspendue et l'utilisateur est alors invitÃ© a Ã©diter
+manuellement chaque fichier en situation conflictuelle, puis Ã  faire un commit qui va conclure le merge
 </p></div>
 
 <h3>Configuration</h3>
 
-<p>La configuration éditable réside dans 2 fichiers :
+<p>La configuration Ã©ditable rÃ©side dans 2 fichiers :
 <ul><li><span class="comm">~/.gitconfig</span> : config globale de l'utilisateur</li>
 <li><span class="comm">./.git/config</span> : config locale du repository</li>
 </ul>
@@ -258,42 +258,42 @@ L'option --global agit sur la configuration globale, sinon c'est local.<br>
 Exemples :<br>
 <span class="comm">git config --global user.name &lt;mon_nom></span><br>
 <span class="comm">git config --global user.email &lt;mon_email></span><br>
-N.B. si vous utilisez github ou un service similaire, mettez le même nom et le même email
+N.B. si vous utilisez github ou un service similaire, mettez le mÃªme nom et le mÃªme email
 que dans votre compte github, surtout si vous contribuez sur le compte d'un autre.
 </p></div>
 
-<h3>Action Réseau</h3>
+<h3>Action RÃ©seau</h3>
 
 <button class="collapsor"><span class="ccomm">git remote add </span> choisir un repo sur un serveur</button>
 <div class="collapsed"><p>
 Exemple :<br>
 <span class="comm">git remote add origin https://github.com/my_name/my_repo</span></p>
-<ul><li><span class="comm">origin</span> est le nom qu'on donne au remote dans cet exemple (ce n'est pas un mot réservé)<br>
-<li>le repository <span class="comm">my_repo</span> est supposé avoir déjà été créé par l'utilisateur 
+<ul><li><span class="comm">origin</span> est le nom qu'on donne au remote dans cet exemple (ce n'est pas un mot rÃ©servÃ©)<br>
+<li>le repository <span class="comm">my_repo</span> est supposÃ© avoir dÃ©jÃ  Ã©tÃ© crÃ©Ã© par l'utilisateur 
 <span class="comm">my_name</span> sur son compte github.</li>
 </ul></div>
 
 <button class="collapsor"><span class="ccomm">git push </span> mettre a jour le repo sur le serveur</button>
 <div class="collapsed"><p>
 Exemples :<br>
-<span class="comm">git push </span> met à jour la branche courante<br>
-<span class="comm">git push -u origin my_branch </span> requis si on a changé de branche<br>
-<span class="comm">git push --all </span> met à jour toutes les branches<br>
-<span class="comm">git push --tags </span> met à jour les tags, seulement les tags<br>
-N.B. le serveur exige une authentification pour vous autoriser à modifier le repository distant.<br>
-Si vous n'êtes pas propriétaire du repo distant, il faut que vous soyez enregistré comme collaborateur de ce repo.<br>
-Les éléments d'authentification (credentials) peuvent être mémorisé sur votre poste de travail, d'une manière qui diffère selon
-le système d'exploitation.<br>
-Si le repo distant a été <b>modifié</b> depuis votre dernier push ou pull (par quelqu'un d'autre ou par vous-même sur un autre poste de travail),
+<span class="comm">git push </span> met Ã  jour la branche courante<br>
+<span class="comm">git push -u origin my_branch </span> requis si on a changÃ© de branche<br>
+<span class="comm">git push --all </span> met Ã  jour toutes les branches<br>
+<span class="comm">git push --tags </span> met Ã  jour les tags, seulement les tags<br>
+N.B. le serveur exige une authentification pour vous autoriser Ã  modifier le repository distant.<br>
+Si vous n'Ãªtes pas propriÃ©taire du repo distant, il faut que vous soyez enregistrÃ© comme collaborateur de ce repo.<br>
+Les Ã©lÃ©ments d'authentification (credentials) peuvent Ãªtre mÃ©morisÃ© sur votre poste de travail, d'une maniÃ¨re qui diffÃ¨re selon
+le systÃ¨me d'exploitation.<br>
+Si le repo distant a Ã©tÃ© <b>modifiÃ©</b> depuis votre dernier push ou pull (par quelqu'un d'autre ou par vous-mÃªme sur un autre poste de travail),
 le serveur va refuser le push et vous demander d'effectuer d'abord un <span class="comm">git pull </span> qui va inclure un
-<b>merge</b>. Alors vous pourrez réiterer votre <span class="comm">git push </span>.
+<b>merge</b>. Alors vous pourrez rÃ©iterer votre <span class="comm">git push </span>.
 </p></div>
 
-<button class="collapsor"><span class="ccomm">git pull </span> mettre a jour le repo local (merge éventuel)</button>
+<button class="collapsor"><span class="ccomm">git pull </span> mettre a jour le repo local (merge Ã©ventuel)</button>
 <div class="collapsed"><p>
-Si le repo distant a été <b>modifié</b> depuis votre dernier push ou pull (par quelqu'un d'autre ou par vous-même sur un autre poste de travail),
+Si le repo distant a Ã©tÃ© <b>modifiÃ©</b> depuis votre dernier push ou pull (par quelqu'un d'autre ou par vous-mÃªme sur un autre poste de travail),
 la commande <span class="comm">git pull </span> va devoir effectuer un merge,
-qui peut réussir immédiatement ou nécessiter une intervention manuelle, tout comme le <span class="comm">merge</span> local.
+qui peut rÃ©ussir immÃ©diatement ou nÃ©cessiter une intervention manuelle, tout comme le <span class="comm">merge</span> local.
 </p></div>
 
 <h3>Liens</h3>
