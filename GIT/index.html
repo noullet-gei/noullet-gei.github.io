@@ -54,7 +54,7 @@ width: 880px; padding-left: 10px; padding-right: 8px; background-color:white; }
 <img src="gitflow.png" style="float: right; margin-left: 20px; margin-right: 0px">
 <img src="logo2x.png"><br>
 <h2>Résumé de survie</h2>
-<i>Jean-Louis Noullet 2018</i>
+<i>Jean-Louis Noullet 2019</i>
 </div>
 <div class="large">
 <button class="grobou" id="grobou">&#x00B1;</button> 
@@ -91,7 +91,7 @@ chaque collaborateur possède une copie locale du projet
 
 <h2>Concepts</h2>
 
-<button class="collapsor"><span class="concept">repository</span> ou <span class="concept">repo</span> : un répertoire contenant un projet (working tree), plus un répertoire <b>.git</b></button>
+<button class="collapsor"><span class="concept">repository</span> ou <span class="concept">repo</span> (dépôt) : un répertoire contenant un projet (working tree), plus un répertoire <b>.git</b></button>
 <div class="collapsed"><p>
 l'ensemble peut être copié, deplacé, synchronisé (dropbox, drive), archivé de maniere classique (tar,zip)<br>
 le répertoire <b>.git</b> contient l'historique du projet sous forme codée et comprimée
@@ -188,9 +188,22 @@ Liste chronologique, le commit le plus récent en premier<br>
 Ajouter un nouveau fichier sur le stage, en vue du prochain commit
 </p></div>
 
+<button class="collapsor"><span class="ccomm">git mv </span> déplacer ou renommer un fichier</button>
+<div class="collapsed"><p>
+Le fichier est renommé ou déplacé en local, et aussi dans l'historique s'il est déjà suivi, en vue du prochain commit<br>
+N.B. si on déplace ou renomme un fichier avec une commande de l'OS, l'historique risque de perdre sa trace et ne
+plus le suivre.
+</p></div>
+
+<button class="collapsor"><span class="ccomm">git rm </span> supprimer un fichier</button>
+<div class="collapsed"><p>
+Le fichier est supprimé en local, et son suivi prend fin.<br>
+L'option <span class="comm">--cached</span> permet de mettre fin au suivi d'un fichier, sans le détruire localement.
+</p></div>
+
 <button class="collapsor"><span class="ccomm">git commit </span> enregistrer les modifications</button>
 <div class="collapsed"><p>
-Exemple : <span class="comm">git commit -a -m "je decris la modif"</span><br>
+Exemple : <span class="comm">git commit -am "je decris la modif"</span><br>
 l'option <span class="comm">-a</span> remet automatiquement sur le stage les éléments qui y étaient au commit précedent<br>
 l'option <span class="comm">-m</span> permet de mettre un commentaire dans la ligne de commande
 (sans cette option, GIT ouvre automatiquement l'éditeur de texte local)
@@ -298,10 +311,11 @@ qui peut réussir immédiatement ou nécessiter une intervention manuelle, tout 
 </p></div>
 
 <h3>Liens</h3>
-<ul style="font-size: 130%">
+<ul style="font-size: 120%">
+<li><a href="faq.html">Trucs Pratiques</a></li>
 <li><a href="https://git-scm.com/book/en/v2" target="_blank">The Book : Pro GIT</a></li>
 <li><a href="https://git-scm.com/book/fr/v2" target="_blank">Le livre Pro GIT, traduit...</a></li>
-<li><a href="faq.html">Tips and Tricks</a></li>
+<li><a href="https://github.com/noullet-gei/noullet-gei.github.io/archive/master.zip">Une archive de cet article, pour utilisation hors-ligne</a></li>
 </ul>
 <p>&nbsp;</p>
 </div>

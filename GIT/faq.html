@@ -56,12 +56,12 @@ width: 880px; padding-left: 10px; padding-right: 8px; background-color:white; }
 
 <button class="collapsor">Fichier <span class="concept">.gitignore </span> pour exclure des éléments de la gestion</button>
 <div class="collapsed"><p>
-Exemple sur un projet du style de ProjVideSTM32F103.zip</p>
-<ul>
-<pre>	DebugConfig
-	Listings
-	Objects
-	*.uvguix.*
+Exemple sur un projet du style de STM32Cube</p>
+<pre>	MDK-ARM/DebugConfig/
+	MDK-ARM/NUCLEO-F103RB/
+	MDK-ARM/RTE/
+	*.lst
+	*uvguix*
 </pre>
 </div>
 
@@ -83,7 +83,7 @@ requises pour que ce soit GIT et non le shell qui interprête le symbole <span c
 <div class="collapsed"><p>
 Pour être sûr que les tags soient cohérents avec les numéros de version inclus dans le code source, on peut utiliser un script
 pour le shell bash. Beaucoup de solutions sont possibles, voici un exemple qui effectue le <span class="comm">commit</span> après
-avoir lu  le numéro de version dans le code source&nbsp:</p>
+avoir lu le numéro de version dans le code source&nbsp;</p>
 <pre><span class="comm">	#! /bin/bash
 	v=V$(grep -P -o '#define\s+VERSION\s+[0-9.]*' src/version.h | grep -o '[0-9.]*')
 	git commit -a -m "Version "$v 
@@ -103,14 +103,36 @@ dite <b>manager</b>.</p>
 <pre>	git config -l
 	credential.helper=manager</pre>
 <p>Ce "manager" délègue le stockage des credentials au système d'exploitation.<br>
-On peut accéder à ce stockage via le "Gestionnaire d'identification" :<br>
+On peut accéder à ce stockage via le "Gestionnaire d'identification" de Windows:<br>
 Panneau de Configuration --> Utilisateurs --> Gestionnaire d'Identification --> Identif. Windows<br>
 La saisie des credentials se fait automatiquement lors de la première connexion.<br><br>
 
- 
-
+Si on souhaite temporairement changer d'identité sur un serveur, on peut désactiver le manager pour le repo courant :<br>
+<span class="comm">git config credential.helper ""</span><br>
+Et le réactiver plus tard :<br>
+<span class="comm">git config credential.helper manager</span>
 </p></div>
 
+<button class="collapsor"><span class="concept">github.com</span>, un <span class="concept">serveur</span> public</button>
+<div class="collapsed"><p>
+Après avoir créé un compte d'utilisateur, on peut créer des repositories gratuitement à condition que leur contenu soit lisible par le public.<br>
+L'interface web donne accés aux données aux moyen d'URLs de la forme:<br>
+<span class="comm">https://github.com/nom_utilisateur/nom_repo</span><br>
+Aprés avoir créé un repo, on peut le peupler depuis un repo local:<br>
+<span class="comm">git remote add origin https://github.com/my_name/my_repo</span><br>
+<span class="comm">git push -u origin master</span><br>
+<span class="comm">git push -all </span> s'il y a d'autres branches<br>
+<span class="comm">git push --tags </span> s'il y a des tags<br>
+</p></div>
+
+<button class="collapsor"><span class="concept">gitlab.com</span>, un <span class="concept">serveur</span> public</button>
+<div class="collapsed"><p>
+Après avoir créé un compte d'utilisateur, on peut créer des <b>projets</b>.<br>
+Chaque projet contient automatiquement un repository GIT, et peut aussi faire
+l'objet d'autres services.<br>
+L'interface web donne accés aux données aux moyen d'URLs de la forme:<br>
+<span class="comm">https://gitlab.com/nom_utilisateur/nom_repo</span><br>
+</p></div>
 
 <p>&nbsp;</p>
 </div>
