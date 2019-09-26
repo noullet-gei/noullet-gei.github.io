@@ -121,17 +121,43 @@ L'interface web donne accés aux données aux moyen d'URLs de la forme:<br>
 Aprés avoir créé un repo, on peut le peupler depuis un repo local:<br>
 <span class="comm">git remote add origin https://github.com/my_name/my_repo</span><br>
 <span class="comm">git push -u origin master</span><br>
-<span class="comm">git push -all </span> s'il y a d'autres branches<br>
-<span class="comm">git push --tags </span> s'il y a des tags<br>
+<span class="comm">git push --all </span> s'il y a d'autres branches<br>
+<span class="comm">git push --tags </span> s'il y a des tags
+<ul>
+<li>cliquer sur un fichier
+  <ul><li>cliquer sur <b>history</b> pour avoir la liste des commits qui le concernent</li></ul></li>
+<li>cliquer sur le compteur de commits pour acceder à l'historique de la branche courante
+  <ul><li>cliquer sur le message ou le hash d'un commit pour voir les <b>diff</b></li>
+  <li>cliquer sur &lt; &gt; pour explorer le working tree <b>à l'époque</b> de ce commit</li></ul></li>
+<li>cliquer sur le compteur de branches
+  <ul><li>cliquer sur la branche pour explorer le working tree au dernier commit de cette branche</li></ul></li>
+<li>cliquer sur le compteur de releases
+  <ul><li>ce sont les <b>tags</b> ! on peut avoir un zip du code pour chaque release</li></ul></li>
+<li>cliquer sur Insights --> Network: on a le graphe des branches, il montre aussi les forks (ne pas confondre)</li>
+  <ul><li>draguer la timeline à droite ou à gauche pour tout voir</li></ul></li>
+</ul>
 </p></div>
 
 <button class="collapsor"><span class="concept">gitlab.com</span>, un <span class="concept">serveur</span> public</button>
 <div class="collapsed"><p>
 Après avoir créé un compte d'utilisateur, on peut créer des <b>projets</b>.<br>
-Chaque projet contient automatiquement un repository GIT, et peut aussi faire
+Chaque projet contient automatiquement un et un seul repository GIT, et peut aussi faire
 l'objet d'autres services.<br>
 L'interface web donne accés aux données aux moyen d'URLs de la forme:<br>
-<span class="comm">https://gitlab.com/nom_utilisateur/nom_repo</span><br>
+<span class="comm">https://gitlab.com/nom_utilisateur/nom_projet</span><br>
+Aprés avoir créé un projet, on peut peupler son repository de la même manière qu'avec github
+<ul>
+<li>cliquer sur un fichier
+  <ul><li>cliquer sur <b>history</b> pour avoir la liste des commits qui le concernent</li></ul></li>
+<li>cliquer sur le compteur de commits pour acceder à l'historique de la branche courante
+  <ul><li>cliquer sur le message ou le hash d'un commit pour voir les <b>diff</b></li>
+  <li>cliquer sur l'icône "folder" à droite pour explorer le working tree <b>à l'époque</b> de ce commit</li></ul></li>
+<li>cliquer sur le compteur de branches
+  <ul><li>cliquer sur la branche pour explorer le working tree au dernier commit de cette branche</li></ul></li>
+<li>cliquer sur le compteur de releases
+  <ul><li>ce sont les <b>tags</b> ! on peut avoir un zip du code pour chaque release</li></ul></li>
+<li>cliquer sur le menu: Repository --> Graph: on a le graphe des branches</li>
+</ul>
 </p></div>
 
 <p>&nbsp;</p>
