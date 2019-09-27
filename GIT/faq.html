@@ -20,8 +20,8 @@
 
 .active:after { content: "\2212"; }
 
-.collapsed { padding: 0; margin-left: 10px; overflow: hidden;
-  max-height: 10px; transition: max-height 0.2s ease-out;
+.collapsed { padding: 10px 0 0 20px; margin-left: 10px; overflow: hidden;
+  max-height: 1px; transition: max-height 0.2s ease-out;
   background-color: #efc; }
 
 .collapsed p { margin: 10px 10px 18px 20px; }
@@ -47,16 +47,16 @@ width: 880px; padding-left: 10px; padding-right: 8px; background-color:white; }
 
 <!--
 <button class="collapsor"><span class="concept"></span></button>
-<div class="collapsed"><p>
-</p></div>
+<div class="collapsed">
+</div>
 -->
 <div class="large">
 <button class="grobou" id="grobou">&#x00B1;</button> 
 <h2 style="margin-top: 15px">GIT Trucs Pratiques</h2>
 
 <button class="collapsor">Fichier <span class="concept">.gitignore </span> pour exclure des éléments de la gestion</button>
-<div class="collapsed"><p>
-Exemple sur un projet du style de STM32Cube</p>
+<div class="collapsed">
+Exemple sur un projet du style de STM32Cube
 <pre>	MDK-ARM/DebugConfig/
 	MDK-ARM/NUCLEO-F103RB/
 	MDK-ARM/RTE/
@@ -66,7 +66,7 @@ Exemple sur un projet du style de STM32Cube</p>
 </div>
 
 <button class="collapsor"><span class="concept">Reconstituer le Working-Tree entier </span> est-ce possible ?</button>
-<div class="collapsed"><p>
+<div class="collapsed">
 Si on efface <b>TOUS</b> les fichiers et répertoires du working-tree, est-ce que GIT peut tout reconstituer à partir de l'historique
 (répertoire <b>.git</b>)&nbsp;?<br>
 Oui bien sûr à l'aide de la commande <span class="comm">checkout</span>&nbsp;!<br><br>
@@ -76,33 +76,33 @@ Pour obtenir le résultat souhaité, il faut forcer la reconstitution avec la co
 Syntaxe générale : <span class="comm">checkout &lt;nom_de_branche_ou_commit_ou_tag> &lt;nom_de_fichier></span><br>
 exemple : <span class="comm">checkout master '*'</span> ou généralement <span class="comm">checkout -- '*'</span><br><br>
 N.B. L'argument <span class="comm">'*'</span> désigne tous les fichier er dossiers archivés, les simple quotes sont
-requises pour que ce soit GIT et non le shell qui interprête le symbole <span class="comm">*</span>. 
-</p></div>
+requises pour que ce soit GIT et non le shell qui interprête le symbole <span class="comm">*</span>.<br>&nbsp;
+</div>
 
 <button class="collapsor"><span class="concept">Création de tags automatisée </span> en phase avec le code source</button>
-<div class="collapsed"><p>
+<div class="collapsed">
 Pour être sûr que les tags soient cohérents avec les numéros de version inclus dans le code source, on peut utiliser un script
 pour le shell bash. Beaucoup de solutions sont possibles, voici un exemple qui effectue le <span class="comm">commit</span> après
-avoir lu le numéro de version dans le code source&nbsp;</p>
+avoir lu le numéro de version dans le code source&nbsp;
 <pre><span class="comm">	#! /bin/bash
 	v=V$(grep -P -o '#define\s+VERSION\s+[0-9.]*' src/version.h | grep -o '[0-9.]*')
 	git commit -a -m "Version "$v 
 	echo creation tag $v
 	git tag $v
 </span></pre>
-<p>Cet exemple utilise des <b>expressions régulières</b> pour extraire le numéro de version au moyen de l'utilitaire Unix
- <span class="comm">grep</span>.
-</p></div>
+Cet exemple utilise des <b>expressions régulières</b> pour extraire le numéro de version au moyen de l'utilitaire Unix
+ <span class="comm">grep</span>.<br>&nbsp;
+</div>
 
 <button class="collapsor"><span class="concept">Stockage des credentials sous Windows</span></button>
-<div class="collapsed"><p>
+<div class="collapsed">
 Le stockage des <b>credentials</b> permet d'éviter d'avoir à saisir nom d'utilisateur et mot de passe à chaque accés au serveur
 (<span class="comm">push</span>, et <span class="comm">pull</span> si le repo n'est pas public.<br>
 La distribution de GIT pour Windows (en 2018) offre une seule possibilité, peu documentée, de stockage de credentials,
-dite <b>manager</b>.</p>
+dite <b>manager</b>.
 <pre>	git config -l
 	credential.helper=manager</pre>
-<p>Ce "manager" délègue le stockage des credentials au système d'exploitation.<br>
+Ce "manager" délègue le stockage des credentials au système d'exploitation.<br>
 On peut accéder à ce stockage via le "Gestionnaire d'identification" de Windows:<br>
 Panneau de Configuration --> Utilisateurs --> Gestionnaire d'Identification --> Identif. Windows<br>
 La saisie des credentials se fait automatiquement lors de la première connexion.<br><br>
@@ -110,11 +110,11 @@ La saisie des credentials se fait automatiquement lors de la première connexion
 Si on souhaite temporairement changer d'identité sur un serveur, on peut désactiver le manager pour le repo courant :<br>
 <span class="comm">git config credential.helper ""</span><br>
 Et le réactiver plus tard :<br>
-<span class="comm">git config credential.helper manager</span>
-</p></div>
+<span class="comm">git config credential.helper manager</span><br>&nbsp;
+</div>
 
 <button class="collapsor"><span class="concept">github.com</span>, un <span class="concept">serveur</span> public</button>
-<div class="collapsed"><p>
+<div class="collapsed">
 Après avoir créé un compte d'utilisateur, on peut créer des repositories gratuitement à condition que leur contenu soit lisible par le public.<br>
 L'interface web donne accés aux données aux moyen d'URLs de la forme:<br>
 <span class="comm">https://github.com/nom_utilisateur/nom_repo</span><br>
@@ -133,13 +133,13 @@ Aprés avoir créé un repo, on peut le peupler depuis un repo local:<br>
   <ul><li>cliquer sur la branche pour explorer le working tree au dernier commit de cette branche</li></ul></li>
 <li>cliquer sur le compteur de releases
   <ul><li>ce sont les <b>tags</b> ! on peut avoir un zip du code pour chaque release</li></ul></li>
-<li>cliquer sur Insights --> Network: on a le graphe des branches, il montre aussi les forks (ne pas confondre)</li>
+<li>cliquer sur Insights --> Network: on a le graphe des branches, il montre aussi les forks (ne pas confondre)
   <ul><li>draguer la timeline à droite ou à gauche pour tout voir</li></ul></li>
 </ul>
-</p></div>
+</div>
 
 <button class="collapsor"><span class="concept">gitlab.com</span>, un <span class="concept">serveur</span> public</button>
-<div class="collapsed"><p>
+<div class="collapsed">
 Après avoir créé un compte d'utilisateur, on peut créer des <b>projets</b>.<br>
 Chaque projet contient automatiquement un et un seul repository GIT, et peut aussi faire
 l'objet d'autres services.<br>
@@ -158,9 +158,35 @@ Aprés avoir créé un projet, on peut peupler son repository de la même maniè
   <ul><li>ce sont les <b>tags</b> ! on peut avoir un zip du code pour chaque release</li></ul></li>
 <li>cliquer sur le menu: Repository --> Graph: on a le graphe des branches</li>
 </ul>
-</p></div>
+</div>
 
-<p>&nbsp;</p>
+<button class="collapsor"><span class="concept">Collaboration </span>sur <span class="concept">github.com</span></button>
+<div class="collapsed">
+Le propriétaire d'un repo sur github peut autoriser des contributeurs à faire des modifications sur ce repo (seulement).<br>
+Chaque contributeur doit déjà avoir un compte sur le serveur.<br>
+La procédure comprend 2 phases :
+<ul><li>Inviter un contributeur (menu <i>Settings</i> du repo)</li>
+<li>Attendre que celui-ci réponde à l'invitation, qu'il reçoit sous forme de notification sur son compte github</li>
+</ul>
+Pour éviter des merges trop fréquents, il est habituel de laisser chaque contributeur préparer sa contribution sur une branche distincte.<br>
+Lorsque son travail est prêt, le contributeur peut inviter de leader du projet à merger sa branche dans la branche principale.<br>
+Github fournit un mécanisme pour émettre une <b>pull request</b> à cet effet.<br>&nbsp;
+</div>
+
+<button class="collapsor"><span class="concept">Collaboration </span>sur <span class="concept">gitlab.com</span></button>
+<div class="collapsed">
+Le propriétaire d'un projet sur gitlab peut enregistrer des <b>membres</b> dans le but de les autoriser à faire des modifications sur
+certaines branches de ce projet.<br>
+Chaque membre doit déjà avoir un compte sur le serveur.<br>
+La procédure comprend 2 phases :
+<ul><li>Référencer un membre dans le projet (menu <i>Settings -> Members</i> du projet) avec le statut de développeur</li>
+<li>Désactiver la protection des branches que ce développeur devra modifier (par défaut les branches sont <i>protégées</i>)</li>
+</ul>
+Lorsque son travail est prêt, le contributeur peut émettre une <b>merge request</b> dans le but d'inviter de leader du projet
+à merger sa branche dans la branche principale.<br>&nbsp;
+</div>
+
+&nbsp;
 </div>
 
 <script>
@@ -171,7 +197,7 @@ for	( i = 0; i < coll.length; i++ ) {
 	coll[i].addEventListener("click", function() {
 	var content = this.nextElementSibling;
 	if	( this.classList.contains("active") ) {
-		content.style.maxHeight = '10px'; this.classList.remove("active");
+		content.style.maxHeight = '1px'; this.classList.remove("active");
 		} else {
 		content.style.maxHeight = content.scrollHeight + "px"; this.classList.add("active");
 		}
@@ -189,7 +215,7 @@ for	( i = 0; i < coll.length; i++ ) {
 function allminus() {
 for	( i = 0; i < coll.length; i++ ) {
 	var content = coll[i].nextElementSibling;
-	content.style.maxHeight = '10px';
+	content.style.maxHeight = '1px';
 	coll[i].classList.remove("active");
 	} 
 }
