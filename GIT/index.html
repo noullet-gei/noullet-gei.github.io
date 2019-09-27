@@ -185,7 +185,12 @@ Liste chronologique, le commit le plus récent en premier<br>
 
 <button class="collapsor"><span class="ccomm">git add </span> ajouter un fichier</button>
 <div class="collapsed"><p>
-Ajouter un nouveau fichier sur le stage, en vue du prochain commit
+Ajouter un nouveau fichier ou répertoire sur le stage, en vue du prochain commit<br>
+Si on nomme un répertoire, tout son contenu est ajouté.<br><br>
+N.B. Dans beaucoup de commandes GIT, le caractère <span class="comm">*</span> est supporté comme wildcard, mais son interprétation (globbing)
+est différente de celle du shell.<br>
+Exemple : <span class="comm">git add '*.c'</span><br> ajoute <b>tous</b> les fichiers .c du working tree<br>
+Notez le rôle des quotes qui empêchent l'interprétation de * par le shell. 
 </p></div>
 
 <button class="collapsor"><span class="ccomm">git mv </span> déplacer ou renommer un fichier</button>
