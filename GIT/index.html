@@ -172,13 +172,14 @@ Cette commande permet de savoir quels éléments ont changé depuis le dernier c
 <button class="collapsor"><span class="ccomm">git log </span> la liste des commits</button>
 <div class="collapsed"><p>
 Liste chronologique, le commit le plus récent en premier<br>
-<span class="comm">git log --oneline --all --graph </span> donne une ligne par commit
+<span class="comm">git log --oneline --all --graph </span> donne une ligne par commit<br>
+<i>Recommandé</i>: alias gitlog='git log --oneline --all --graph' dans votre .bashrc
 </p></div>
 
 <button class="collapsor"><span class="ccomm">git diff </span> comparaison de fichiers</button>
 <div class="collapsed"><p>
 <span class="comm">git diff</span> compare le working-tree avec le dernier commit<br>
-<span class="comm">git diff &lt;commi1> &lt;commit2></span> compare deux commits
+<span class="comm">git diff &lt;older_commit> &lt;newer_commit></span> compare deux commits
 </p></div>
 
 <h3>Action</h3>
