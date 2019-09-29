@@ -186,6 +186,34 @@ Lorsque son travail est prêt, le contributeur peut émettre une <b>merge reques
 à merger sa branche dans la branche principale.<br>&nbsp;
 </div>
 
+<button class="collapsor"><span class="concept">Pages Web </span>sur <span class="concept">github.io</span></button>
+<div class="collapsed">
+En créant un repository avec un nom tel que <span class="comm">nom_utilisateur.github.io </span>, il est possible de créer un site
+HTML statique, hébergé par github à l'URL <span class="comm">https://nom_utilisateur.github.io</span>.
+<ul><li>le contenu du site est géré via GIT</li>
+<li>il peut contenir un nombre arbitraires de pages html, css, images, sous-répertoires</li>
+<li>l'encodage utf-8 semble obligatoire, HTML5 est recommandé</li>
+<li>l'encombrement total est limité (1Gb fin 2019)
+<li>un seul site par utilisateur enregistré sous github.com</li>
+<li>comme pour n'importe quel repo public, les internautes peuvent récupérer l'archive du site sur
+<span class="comm">https://github.com/nom_utilisateur/nom_utilisateur.github.io/archive/master.zip </span>pour consultation hors-ligne</li>
+</ul>
+</div>
+
+<button class="collapsor"><span class="concept">Pages Web </span>sur <span class="concept">gitlab.io</span></button>
+<div class="collapsed">
+Dans le repository d'un projet gitlab, il est possible de placer des pages HTML dans un répertoire <span class="comm">public</span> pour qu'elles soient
+hébergées par gitlab à l'URL <span class="comm">https://nom_utilisateur.gitlab.io/nom_projet</span>.<br>
+Un script <span class="comm">.gitlab-ci.yml </span>doit être inclus pour activer le déploiement des documents du projet sur le site.<br>
+La méthode la plus simple pour l'obtenir est de créer le projet à partir du template <span class="comm">Pages/Plain HTML</span>.
+<ul><li>le contenu du site est géré via GIT, ce contenu peut être créé sur plusieurs projets gérés indépendamment</li>
+<li>il peut contenir un nombre arbitraires de pages html, css, images, sous-répertoires</li>
+<li>l'encodage utf-8 semble obligatoire, HTML5 est recommandé</li>
+<li>l'encombrement est limité (10Gb par projet fin 2019)
+<li>si le projet est public, les internautes peuvent récupérer l'archive des pages sur
+<span class="comm">https://gitlab.com/nom_utilisateur/nom_projet/-/archive/master/nom_projet-master.zip </span>pour consultation hors-ligne</li>
+</div>
+
 &nbsp;
 </div>
 
