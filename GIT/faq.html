@@ -50,49 +50,16 @@ width: 880px; padding-left: 10px; padding-right: 8px; background-color:white; }
 <div class="collapsed">
 </div>
 -->
+<div style="margin: 0 auto; width: 880px; overflow: auto; ">
+<div style="float: right; margin-left: 20px; margin-right: 0px">
+<img src="GitHub-Mark-64px.png">&nbsp;&nbsp;&nbsp;<img src="GitLab_Logo.svg.png" height="64">
+</div>
+<h2 style="margin-top: 10px">GIT : Trucs Pratiques</h2>
+</div>
+
 <div class="large">
 <button class="grobou" id="grobou">&#x00B1;</button> 
-<h2 style="margin-top: 15px">GIT Trucs Pratiques</h2>
-
-<button class="collapsor">Fichier <span class="concept">.gitignore </span> pour exclure des éléments de la gestion</button>
-<div class="collapsed">
-Exemple sur un projet du style de STM32Cube
-<pre>	MDK-ARM/DebugConfig/
-	MDK-ARM/NUCLEO-F103RB/
-	MDK-ARM/RTE/
-	*.lst
-	*uvguix*
-</pre>
-</div>
-
-<button class="collapsor"><span class="concept">Reconstituer le Working-Tree entier </span> est-ce possible ?</button>
-<div class="collapsed">
-Si on efface <b>TOUS</b> les fichiers et répertoires du working-tree, est-ce que GIT peut tout reconstituer à partir de l'historique
-(répertoire <b>.git</b>)&nbsp;?<br>
-Oui bien sûr à l'aide de la commande <span class="comm">checkout</span>&nbsp;!<br><br>
-Cependant il y a un petit détour, en effet si le working-tree comporte des changements par rapport au dernier commit,
-<span class="comm">checkout</span> évitera de reconstituer ce qui serait en conflit avec ces changements.<br>
-Pour obtenir le résultat souhaité, il faut forcer la reconstitution avec la commande <span class="comm">checkout</span> au niveau fichier.<br><br>
-Syntaxe générale : <span class="comm">checkout &lt;nom_de_branche_ou_commit_ou_tag> &lt;nom_de_fichier></span><br>
-exemple : <span class="comm">checkout master '*'</span> ou généralement <span class="comm">checkout -- '*'</span><br><br>
-N.B. L'argument <span class="comm">'*'</span> désigne tous les fichier et dossiers archivés, les simple quotes sont
-requises pour que ce soit GIT et non le shell qui interprête le symbole <span class="comm">*</span>.<br>&nbsp;
-</div>
-
-<button class="collapsor"><span class="concept">Création de tags automatisée </span> en phase avec le code source</button>
-<div class="collapsed">
-Pour être sûr que les tags soient cohérents avec les numéros de version inclus dans le code source, on peut utiliser un script
-pour le shell bash. Beaucoup de solutions sont possibles, voici un exemple qui effectue le <span class="comm">commit</span> après
-avoir lu le numéro de version dans le code source&nbsp;
-<pre><span class="comm">	#! /bin/bash
-	v=V$(grep -P -o '#define\s+VERSION\s+[0-9.]*' src/version.h | grep -o '[0-9.]*')
-	git commit -a -m "Version "$v 
-	echo creation tag $v
-	git tag $v
-</span></pre>
-Cet exemple utilise des <b>expressions régulières</b> pour extraire le numéro de version au moyen de l'utilitaire Unix
- <span class="comm">grep</span>.<br>&nbsp;
-</div>
+<h2 style="margin-top: 5px">Serveurs Publics</h2>
 
 <button class="collapsor"><span class="concept">Stockage des credentials sous Windows</span></button>
 <div class="collapsed">
@@ -212,8 +179,49 @@ La méthode la plus simple pour l'obtenir est de créer le projet à partir du t
 <li>l'encombrement est limité (10Gb par projet fin 2019)
 <li>si le projet est public, les internautes peuvent récupérer l'archive des pages sur
 <span class="comm">https://gitlab.com/nom_utilisateur/nom_projet/-/archive/master/nom_projet-master.zip </span>pour consultation hors-ligne</li>
+</ul>
 </div>
 
+<h2>Divers Trucs</h2>
+<button class="collapsor">Fichier <span class="concept">.gitignore </span> pour exclure des éléments de la gestion</button>
+<div class="collapsed">
+Exemple sur un projet du style de STM32Cube
+<pre>	MDK-ARM/DebugConfig/
+	MDK-ARM/NUCLEO-F103RB/
+	MDK-ARM/RTE/
+	*.lst
+	*uvguix*
+</pre>
+</div>
+
+<button class="collapsor"><span class="concept">Reconstituer le Working-Tree entier </span> est-ce possible ?</button>
+<div class="collapsed">
+Si on efface <b>TOUS</b> les fichiers et répertoires du working-tree, est-ce que GIT peut tout reconstituer à partir de l'historique
+(répertoire <b>.git</b>)&nbsp;?<br>
+Oui bien sûr à l'aide de la commande <span class="comm">checkout</span>&nbsp;!<br><br>
+Cependant il y a un petit détour, en effet si le working-tree comporte des changements par rapport au dernier commit,
+<span class="comm">checkout</span> évitera de reconstituer ce qui serait en conflit avec ces changements.<br>
+Pour obtenir le résultat souhaité, il faut forcer la reconstitution avec la commande <span class="comm">checkout</span> au niveau fichier.<br><br>
+Syntaxe générale : <span class="comm">checkout &lt;nom_de_branche_ou_commit_ou_tag> &lt;nom_de_fichier></span><br>
+exemple : <span class="comm">checkout master '*'</span> ou généralement <span class="comm">checkout -- '*'</span><br><br>
+N.B. L'argument <span class="comm">'*'</span> désigne tous les fichier et dossiers archivés, les simple quotes sont
+requises pour que ce soit GIT et non le shell qui interprête le symbole <span class="comm">*</span>.<br>&nbsp;
+</div>
+
+<button class="collapsor"><span class="concept">Création de tags automatisée </span> en phase avec le code source</button>
+<div class="collapsed">
+Pour être sûr que les tags soient cohérents avec les numéros de version inclus dans le code source, on peut utiliser un script
+pour le shell bash. Beaucoup de solutions sont possibles, voici un exemple qui effectue le <span class="comm">commit</span> après
+avoir lu le numéro de version dans le code source&nbsp;
+<pre><span class="comm">	#! /bin/bash
+	v=V$(grep -P -o '#define\s+VERSION\s+[0-9.]*' src/version.h | grep -o '[0-9.]*')
+	git commit -a -m "Version "$v 
+	echo creation tag $v
+	git tag $v
+</span></pre>
+Cet exemple utilise des <b>expressions régulières</b> pour extraire le numéro de version au moyen de l'utilitaire Unix
+ <span class="comm">grep</span>.<br>&nbsp;
+</div>
 &nbsp;
 </div>
 
