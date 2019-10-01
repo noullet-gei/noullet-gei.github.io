@@ -88,6 +88,7 @@ chaque collaborateur possède une copie locale du projet
 <li><a target="_blank" href="http://gitlab.com">gitlab.com</a>, gratuit pour repository de base</li>
 <li><a target="_blank" href="https://aws.amazon.com/fr/codecommit/">aws.amazon.com</a> (CodeCommit), gratuit pour 5 collaborateurs max.</li>
 </ul>
+Plus d'info sur les serveurs publics dans : <a href="faq.html" target="_blank">Trucs Pratiques</a>
 
 <h2>Concepts</h2>
 
@@ -112,9 +113,10 @@ l'URL du remote indique le protocole utilisé (https ou ssh ou autre)<br>
 
 <button class="collapsor"><span class="concept">commit</span> : un snapshot (instantané), identifié par un hash (sha1)</button>
 <div class="collapsed"><p>
-un commit pointe sur au moins un commit précédent, son <b>ancetre</b><br>
+un commit pointe sur au moins un commit précédent, son <b>ancêtre</b><br>
 on peut désigner un commit par un hash abrégé (min 5 premiers digits), un tag ou une branche<br>
-(Note : to commit signifie "confier, remettre")
+(Note : to commit signifie "confier, remettre")<br>
+Un commit ne peut <b>jamais</b> être modifié, ni supprimé (sauf le plus récent de la branche)
 </p></div>
 
 <button class="collapsor"><span class="concept">stage</span> : espace virtuel où se trouvent les éléments qui seront photographiés par le prochain commit</button>
@@ -169,9 +171,14 @@ Exemple : <span class="comm">git help branch</span> donne le manuel de la comman
 Cette commande permet de savoir quels éléments ont changé depuis le dernier commit, et s'ils sont sur le stage ou non.
 </p></div>
 
+<button class="collapsor"><span class="ccomm">git ls-files </span> la liste des fichiers actuellement gérés par GIT</button>
+<div class="collapsed"><p>
+Cette commande permet de vérifier le résultat de <span class="comm">git add</span>.
+</p></div>
+
 <button class="collapsor"><span class="ccomm">git log </span> la liste des commits</button>
 <div class="collapsed"><p>
-Liste chronologique, le commit le plus récent en premier<br>
+Liste chronologique, le commit le <b>plus récent</b> en premier<br>
 <span class="comm">git log --oneline --all --graph </span> donne une ligne par commit<br>
 <i>Recommandé</i>: alias gitlog='git log --oneline --all --graph' dans votre .bashrc
 </p></div>
@@ -204,7 +211,8 @@ plus le suivre.
 <button class="collapsor"><span class="ccomm">git rm </span> supprimer un fichier</button>
 <div class="collapsed"><p>
 Le fichier est supprimé en local, et son suivi prend fin.<br>
-L'option <span class="comm">--cached</span> permet de mettre fin au suivi d'un fichier, sans le détruire localement.
+L'option <span class="comm">--cached</span> permet de mettre fin au suivi d'un fichier, sans le détruire localement
+(c'est l'inverse de git add).
 </p></div>
 
 <button class="collapsor"><span class="ccomm">git commit </span> enregistrer les modifications</button>
@@ -215,24 +223,29 @@ l'option <span class="comm">-m</span> permet de mettre un commentaire dans la li
 (sans cette option, GIT ouvre automatiquement l'éditeur de texte local)
 </p></div>
 
-<button class="collapsor"><span class="ccomm">git checkout </span> remonter le temps</button>
+<button class="collapsor"><span class="ccomm">git checkout </span> remonter le temps (ou revenir au présent :-)</button>
 <div class="collapsed"><p>
 Cette commande prend un commit comme argument. Elle fait 2 choses :</p>
 <ul><li>placer le pointeur HEAD sur ce commit</li>
-<li>reconstituer le working-tree tel qu'il était au moment de ce commit<br>
-N.B. pour que cette reconstitution fonctionne correctement il faut que la base de donnée soit à jour
-(qu'il n'existe aucun changement non commité)</li>
+<li>reconstituer le working-tree tel qu'il était au moment de ce commit</li>
 </ul>
-<p>Comme toutes les commandes qui prennent un commit comme argument, cette commande accepte aussi un <b>tag</b> ou une <b>branch</b>
+<p>Comme toutes les commandes qui prennent un commit comme argument, cette commande accepte aussi une <b>branche</b> ou un <b>tag</b>.<br><br>
+<b>Attention:</b> pour que cette reconstitution fonctionne correctement il faut que la base de donnée soit à jour
+(qu'il n'existe aucun changement non commité), dans le cas contraire on peut avoir un refus.
+Alors on peut utiliser la <b>dangereuse</b> option <span class="ccomm">-f</span>, ce qui implique qu'on accepte perdre les changements non-commités.<br>
+Le checkout peut aussi échouer en cas de disparition intempestive d'un ou plusieurs fichiers (ce qui est assimilé à un changement non commité),
+alors on peut forcer la restitution des fichiers perdus en ajoutant leur nom à la ligne de commande, ou le joker <span class="ccomm">'*'</span>.  
 </p></div>
 
-<button class="collapsor"><span class="ccomm">git checkout --</span> remonter le temps</button>
+<button class="collapsor"><span class="ccomm">git checkout -- nom_fichier </span> remonter le temps</button>
 <div class="collapsed"><p>
-Cette commande prend un nom de fichier comme argument. Elle fait 1 chose :</p>
-<ul><li>reconstituer le fichier tel qu'il était au moment du dernier commit<br>
-N.B. pour que cette reconstitution fonctionne correctement il faut que la base de donnée soit à jour
-(qu'il n'existe aucun changement non commité)</li>
-</ul>
+Cette commande prend un nom de fichier comme argument. Elle reconstitue le fichier tel qu'il était au moment du dernier commit, même s'il a disparu<br>
+<b>Attention:</b> tout comme l'option <span class="ccomm">-f</span>, cette commande implique qu'on accepte perdre les changements non-commités.<br><br>
+Variantes:</p>
+<ul><li>remplacer <span class="ccomm"> -- </span>par une désignation de commit, branche ou tag: alors le fichier est mis en conformité avec 
+le commit désigné, cependant le pointeur HEAD n'est <b>PAS</b> déplacé</li>
+<li>remplacer le nom de fichier par <span class="ccomm">'*' </span>alors tous les fichiers sont mis à jour (sans déplacer HEAD)</li>
+</ul> 
 </div>
 
 <button class="collapsor"><span class="ccomm">git tag </span> donner un numéro de version (release)</button>
@@ -318,7 +331,7 @@ qui peut réussir immédiatement ou nécessiter une intervention manuelle, tout 
 
 <h3>Liens</h3>
 <ul style="font-size: 120%">
-<li><a href="faq.html">Trucs Pratiques</a></li>
+<li><a href="faq.html" target="_blank">Trucs Pratiques</a></li>
 <li><a href="https://git-scm.com/book/en/v2" target="_blank">The Book : Pro GIT</a></li>
 <li><a href="https://git-scm.com/book/fr/v2" target="_blank">Le livre Pro GIT, traduit...</a></li>
 <li><a href="https://github.com/noullet-gei/noullet-gei.github.io/archive/master.zip">Une archive de cet article, pour utilisation hors-ligne</a></li>
