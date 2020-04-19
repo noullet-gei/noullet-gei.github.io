@@ -61,6 +61,35 @@ width: 880px; padding-left: 10px; padding-right: 8px; background-color:white; }
 <button class="grobou" id="grobou">&#x00B1;</button> 
 <h2 style="margin-top: 5px">Serveurs Publics</h2>
 
+<button class="collapsor"><span class="concept">Check-list pour éviter les frustrations</span></button>
+<div class="collapsed">
+<ul>
+<li>Avant de <b>toucher</b> à quoi que ce soit :<br>
+	<ul><li>s'il existe une possibilité que le serveur ait reçu un push venant d'ailleurs:<br>
+	<span class="comm">git pull</span> (avec la précaution ci-dessous), ceci pour éviter de subir un merge forcé<br>
+	(si le serveur n'est pas en avance, ce pull ne fera rien de mal)</li>
+	</ul></li>
+<li>Avant un <b>commit :</b>
+	<ul><li><span class="comm">git status </span>pour vérifier qu'il ne reste pas un fichier source utile dans les "untracked"</li>
+	<li><span class="comm">git log </span>pour vérifier que HEAD pointe bien sur la branche qu'on veut prolonger</li>
+	</ul></li>
+<li>Avant un <b>push :</b>
+	<ul><li><span class="comm">git log </span>pour vérifier que le dernier commit est irréprochable, car il reste une chance de l'amender</li>
+	</ul></li>
+<li>Avant un <b>pull :</b>
+	<ul><li><span class="comm">git status </span>pour vérifier qu'il n'y a pas de modification en attente d'un commit.<br>
+	Si c'est le cas, il faut cacher ou abandonner ces modifications avant le pull
+		<ul><li>pour abandonner une modif, <span class="comm">git checkout -- nom_fichier</li>
+		<li>pour cacher une modif on peut déplacer le fichier ailleurs et abandonner la modif (comme ci-dessus),<br>
+		ou utiliser <span class="comm">git stash</span>, qui fait la même chose mais encombre l'historique</li>
+		</ul></li>
+	</ul></li>
+<li>Avant un <b>checkout </b>vers un commit passé :
+	<ul><li>Comme pour un <b>pull</b>
+	</ul></li>
+</ul>
+</div>
+
 <button class="collapsor"><span class="concept">Stockage des credentials sous Windows</span></button>
 <div class="collapsed">
 Le stockage des <b>credentials</b> permet d'éviter d'avoir à saisir nom d'utilisateur et mot de passe à chaque accés au serveur
@@ -147,7 +176,8 @@ certaines branches de ce projet.<br>
 Chaque membre doit déjà avoir un compte sur le serveur.<br>
 La procédure comprend 2 phases :
 <ul><li>Référencer un membre dans le projet (menu <i>Settings -> Members</i> du projet) avec le statut de développeur</li>
-<li>Désactiver la protection des branches que ce développeur devra modifier (par défaut les branches sont <i>protégées</i>)</li>
+<li>Désactiver la <b>protection des branches</b> que ce développeur devra modifier (la protection des branches est une particularité
+de gitlab, par défaut la branche master est <i>protégée</i>)</li>
 </ul>
 Lorsque son travail est prêt, le contributeur peut émettre une <b>merge request</b> dans le but d'inviter de leader du projet
 à merger sa branche dans la branche principale.<br>&nbsp;
